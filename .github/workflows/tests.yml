@@ -21,10 +21,6 @@ jobs:
         env:
           TOKEN: ${{ secrets.TESTS_ACCESS_TOKEN }}
         run: |
-          if [ -z "$TOKEN" ]; then
-            echo "::error::PAT token is not configured!"
-            exit 1
-          fi
           git clone --depth 1 --filter=blob:none --sparse https://$TOKEN@github.com/${{ github.repository_owner }}/python-practice-tests.git
           cd python-practice-tests
           git sparse-checkout set tests
